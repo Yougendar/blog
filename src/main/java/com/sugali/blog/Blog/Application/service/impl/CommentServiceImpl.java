@@ -37,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
 		comment.setPost(post);
 		
 		Comment savedComment = commentRepo.save(comment);
-		CommentDomain newcomment = new CommentDomain();
+		CommentDomain newcomment = new CommentDomain(savedComment);
 		newcomment.setId(savedComment.getId());
 		newcomment.setName(savedComment.getName());
 		newcomment.setEmail(savedComment.getEmail());

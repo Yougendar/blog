@@ -22,9 +22,6 @@ public class CommentDomain {
 	private String email;
 	private String body;
 	
-	public CommentDomain() {
-		
-	}
 	
 	public CommentDomain(Comment c) {
 		this.id = c.getId();

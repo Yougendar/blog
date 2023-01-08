@@ -2,6 +2,7 @@ package com.sugali.blog.Blog.Application.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,16 +39,19 @@ public class PostController {
 		return postService.getPostById(id);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/api/post")
 	public ResponseEntity<PostDomain> createPost(@RequestBody PostDomain postDomain) {
 		return new ResponseEntity<>(postService.createPost(postDomain),HttpStatus.CREATED);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/api/post/update/{id}")
 	public PostDomain updatePost(@RequestBody PostDomain post,@PathVariable Long id) {
 		return postService.updatePost(post,id);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("api/post/delete/{id}")
 	public void deletePost(@PathVariable Long id) {
 		postService.deletePost(id);
